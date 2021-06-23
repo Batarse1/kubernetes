@@ -1,19 +1,19 @@
 <?php
-$confessionTitle = $_DELETE['confessionTitle'];
-$Confession = $_DELETE['Confession'];
+$movieTitle = $_DELETE['movieTitle'];
+$Summary = $_DELETE['Summary'];
 
 //database connection
-$mysqli = new mysqli('10.244.0.4', "root", "confessionPassword", "confessiondb");
+$mysqli = new mysqli('10.244.0.6', "root", "moviePassword", "moviedb");
 
 if (mysqli_connect_errno()) {
     printf("Connection failed: %s\n", $mysqli->connect_error);
     exit();
 }
 
-$stmt = $mysqli->prepare("DELETE FROM confessions WHERE title='confessionTitle' values(?)");
-$stmt->bind_param("s", $confessionTitle);
+$stmt = $mysqli->prepare("DELETE FROM movie WHERE title='movieTitle' values(?)");
+$stmt->bind_param("s", $movieTitle);
 $stmt->execute();
-printf("Confession deleted succesfully\n");
+printf("Movie deleted succesfully\n");
 $stmt->close();
 $mysqli->close();
 ?>
@@ -26,18 +26,18 @@ $mysqli->close();
     <link rel="stylesheet" href="style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
 
-    <title>Confessions</title>
+    <title>Movies</title>
 </head>
 
 <body class="h-100 d-flex justify-content-center align-items-center">
 
     <form action="" method="DELETE" class="container">
 
-        <h4 class="display-4">Delete a confession</h4>
+        <h4 class="display-4">Delete a movie</h4>
 
         <div class="mb-3">
-            <label for="confessionTitle" class="form-label">Confession title</label>
-            <input type="text" class="form-control" id="confessionTitle" placeholder="Ex: Harry potter and the philosopher's stone" name="confessionTitle" value="">
+            <label for="movieTitle" class="form-label">Movie title</label>
+            <input type="text" class="form-control" id="movieTitle" placeholder="Ex: Harry potter and the philosopher's stone" name="movieTitle" value="">
         </div>
 
         <div class="d-flex justify-content-between">

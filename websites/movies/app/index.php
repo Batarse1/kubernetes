@@ -8,17 +8,38 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
 
-    <title>Dictionary</title>
+    <title>Movies</title>
 </head>
 
 <body class="h-100 d-flex justify-content-center align-items-center">
 
     <div class="container">
 
-        <h4 class="display-4">List of terms</h4>
+        <h4 class="display-4">List of movies</h4>
         
+            <div class="overflow-auto" style="max-height: 400px;">
+            <?php 
+
+            $mysqli = new mysqli('10.244.0.6', "root", "moviePassword", "moviedb");
+
+            if (mysqli_connect_errno()) {
+                printf("Connection failed: %s\n", $mysqli->connect_error);
+                exit();
+            }
+
+            $query = 'SELECT * FROM movie';
+            $result = mysqli_query($conn, $query);
+
+            while($row = $result->fetch_array(MYSQLI_ASSOC)){
+                echo "<h6 class='display-6'>" . $row["title"] . "</h6>";	
+                echo "<p class='lead'>" . $row["summary"] . "</p>";
+            }
+            ?>
+
+            </div>
+
         <div class="d-flex justify-content-between">
-            <a href="add.html"><button class="btn btn-primary pe-5 ps-5" type="submit">Next</button></a>
+            <a href="add.php"><button class="btn btn-primary pe-5 ps-5" type="submit">Next</button></a>
         </div>
 
     </div>

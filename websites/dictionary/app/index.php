@@ -8,31 +8,31 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
 
-    <title>Confessions</title>
+    <title>Dictionary</title>
 </head>
 
 <body class="h-100 d-flex justify-content-center align-items-center">
 
     <div class="container">
 
-        <h4 class="display-4">List of confessions</h4>
+        <h4 class="display-4">List of terms</h4>
         
             <div class="overflow-auto" style="max-height: 400px;">
             <?php 
 
-            $mysqli = new mysqli('10.244.0.4', "root", "confessionPassword", "confessiondb");
+            $mysqli = new mysqli('10.244.0.5', "root", "dictionaryPassword", "dictionarydb");
 
             if (mysqli_connect_errno()) {
                 printf("Connection failed: %s\n", $mysqli->connect_error);
                 exit();
             }
 
-            $query = 'SELECT * FROM confessions';
+            $query = 'SELECT * FROM dictionary';
             $result = mysqli_query($conn, $query);
 
             while($row = $result->fetch_array(MYSQLI_ASSOC)){
-                echo "<h6 class='display-6'>" . $row["title"] . "</h6>";	
-                echo "<p class='lead'>" . $row["confession"] . "</p>";
+                echo "<h6 class='display-6'>" . $row["term"] . "</h6>";	
+                echo "<p class='lead'>" . $row["definition"] . "</p>";
             }
             ?>
 

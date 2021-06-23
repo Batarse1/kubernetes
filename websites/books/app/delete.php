@@ -1,6 +1,6 @@
 <?php
-$bookTitle = $_POST['bookTitle'];
-$bookDescription = $_POST['bookDescription'];
+$bookTitle = $_DELETE['bookTitle'];
+$bookDescription = $_DELETE['bookDescription'];
 
 //database connection
 $mysqli = new mysqli('10.244.0.3', "root", "bookPassword", "bookdb");
@@ -10,7 +10,7 @@ if (mysqli_connect_errno()) {
     exit();
 }
 
-$stmt = $mysqli->prepare("DELETE FROM book WHERE title='booksTitle' values(?)");
+$stmt = $mysqli->prepare("DELETE FROM book WHERE title='bookTitle' values(?)");
 $stmt->bind_param("s", $bookTitle);
 $stmt->execute();
 printf("Book deleted succesfully\n");
@@ -31,7 +31,7 @@ $mysqli->close();
 
 <body class="h-100 d-flex justify-content-center align-items-center">
 
-    <form action="" method="POST" class="container">
+    <form action="" method="DELETE" class="container">
 
         <h4 class="display-4">Delete a book</h4>
 
