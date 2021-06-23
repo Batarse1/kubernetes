@@ -1,3 +1,5 @@
+<?php
+?>
 <!DOCTYPE html>
 <html lang="en" class="h-100">
 
@@ -17,6 +19,27 @@
 
         <h4 class="display-4">List of books</h4>
         
+            <div class="overflow-auto" style="max-height: 400px;">
+            <?php 
+
+            $mysqli = new mysqli('10.244.0.3', "root", "bookPassword", "bookdb");
+
+            if (mysqli_connect_errno()) {
+                printf("Connection failed: %s\n", $mysqli->connect_error);
+                exit();
+            }
+
+            $query = 'SELECT * FROM book';
+            $result = mysqli_query($conn, $query);
+
+            while($row = $result->fetch_array(MYSQLI_ASSOC)){
+                echo "<h6 class='display-6'>" . $row["title"] . "</h6>";	
+                echo "<p class='lead'>" . $row["description"] . "</p>";
+            }
+            ?>
+
+            </div>
+
         <div class="d-flex justify-content-between">
             <a href="add.html"><button class="btn btn-primary pe-5 ps-5" type="submit">Next</button></a>
         </div>
