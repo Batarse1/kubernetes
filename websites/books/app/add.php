@@ -1,6 +1,6 @@
 <?php
-$movieTitle = $_POST['movieTitle'];
-$Summary = $_POST['Summary'];
+$bookTitle = $_POST['bookTitle'];
+$bookDescription = $_POST['bookDescription'];
 
 //database connection
 $mysqli = new mysqli('10.244.0.3', "root", "bookPassword", "bookdb");
@@ -10,10 +10,10 @@ if (mysqli_connect_errno()) {
     exit();
 }
 
-$stmt = $mysql->prepare("INSERT INTO movie(movieTitle, Summary) values(?, ?)");
-$stmt->bind_param("ss", $movieTitle, $Summary);
+$stmt = $mysql->prepare("INSERT INTO book(bookTitle, bookDescription) values(?, ?)");
+$stmt->bind_param("ss", $bookTitle, $bookDescription);
 $stmt->execute();
-printf("Movie added succesfully\n");
+printf("Book added succesfully\n");
 $stmt->close();
 $mysql->close();
 ?>
@@ -26,7 +26,7 @@ $mysql->close();
     <link rel="stylesheet" href="style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
 
-    <title>Movies</title>
+    <title>Books</title>
 </head>
 
 <body class="h-100 d-flex justify-content-center align-items-center">
@@ -36,13 +36,13 @@ $mysql->close();
         <h4 class="display-4">Add a book</h4>
 
         <div class="mb-3">
-            <label for="movieTitle" class="form-label">Movie title</label>
-            <input type="text" class="form-control" id="movieTitle" placeholder="Ex: Harry potter and the philosopher's stone" name="movieTitle" value="">
+            <label for="bookTitle" class="form-label">Book title</label>
+            <input type="text" class="form-control" id="bookTitle" placeholder="Ex: Harry potter and the philosopher's stone" name="bookTitle" value="">
         </div>
 
         <div class="mb-3">
-            <label for="Summary" class="form-label">Description</label>
-            <textarea class="form-control" id="Summary" rows="5" placeholder="Ex: Harry Potter and the Philosopher's Stone (released in the United States and India as Harry Potter and the Sorcerer's Stone) J. K. Rowling's 1997 novel" name="Summary" value=""></textarea>
+            <label for="bookDescription" class="form-label">Description</label>
+            <textarea class="form-control" id="bookDescription" rows="5" placeholder="Ex: Harry Potter and the Philosopher's Stone (released in the United States and India as Harry Potter and the Sorcerer's Stone) is a 2001 fantasy film directed by Chris Columbus and distributed by Warner Bros. Pictures, based on J. K. Rowling's 1997 novel of the same name." name="bookDescription" value=""></textarea>
         </div>
 
         <div class="d-flex justify-content-between">
