@@ -3,7 +3,6 @@ $movieTitle = $_POST['movieTitle'];
 $Summary = $_POST['Summary'];
 
 //database connection
-//database connection
 $mysqli = new mysqli('10.244.0.3', "root", "bookPassword", "bookdb");
 
 if (mysqli_connect_errno()) {
