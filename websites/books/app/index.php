@@ -1,5 +1,3 @@
-<?php
-?>
 <!DOCTYPE html>
 <html lang="en" class="h-100">
 
@@ -41,7 +39,7 @@
             </div>
 
         <div class="d-flex justify-content-between">
-            <a href="add.html"><button class="btn btn-primary pe-5 ps-5" type="submit">Next</button></a>
+            <a href="add.php"><button class="btn btn-primary pe-5 ps-5" type="submit">Next</button></a>
         </div>
 
     </div>
