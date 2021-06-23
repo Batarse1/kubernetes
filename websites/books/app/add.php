@@ -47,9 +47,9 @@ $mysql->close();
         </div>
 
         <div class="d-flex justify-content-between">
-            <a href="index.html"><button class="btn btn-primary pe-5 ps-5" type="button">Previous</button></a>
+            <a href="index.php"><button class="btn btn-primary pe-5 ps-5" type="button">Previous</button></a>
             <button type="submit" class="btn btn-primary pe-5 ps-5" type="submit">Add</button>
-            <a href="delete.html"><button class="btn btn-primary pe-5 ps-5" type="button">Next</button></a>
+            <a href="delete.php"><button class="btn btn-primary pe-5 ps-5" type="button">Next</button></a>
         </div>
 
     </form>
