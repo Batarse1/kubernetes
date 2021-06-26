@@ -3,7 +3,7 @@ $confessionTitle = $_DELETE['confessionTitle'];
 $Confession = $_DELETE['Confession'];
 
 //database connection
-$mysqli = new mysqli('10.244.0.4', "root", "confessionPassword", "confessiondb");
+$mysqli = new mysqli('mysql-service', "root", "confessionPassword", "confessiondb");
 
 if (mysqli_connect_errno()) {
     printf("Connection failed: %s\n", $mysqli->connect_error);

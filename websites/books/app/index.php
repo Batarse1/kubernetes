@@ -19,8 +19,8 @@
         
             <div class="overflow-auto" style="max-height: 400px;">
             <?php 
-
-            $mysqli = new mysqli('10.244.0.3', "root", "bookPassword", "bookdb");
+            
+            $mysqli = new mysqli('10.244.0.3', "root", "book", "bookdb");
 
             if (mysqli_connect_errno()) {
                 printf("Connection failed: %s\n", $mysqli->connect_error);
@@ -28,12 +28,13 @@
             }
 
             $query = 'SELECT * FROM book';
-            $result = mysqli_query($conn, $query);
+            $result = mysqli_query($mysqli, $query);
 
             while($row = $result->fetch_array(MYSQLI_ASSOC)){
-                echo "<h6 class='display-6'>" . $row["title"] . "</h6>";	
-                echo "<p class='lead'>" . $row["description"] . "</p>";
+                echo "<h6 class='display-6'>" . $row["bookTitle"] . "</h6>";	
+                echo "<p class='lead'>" . $row["bookDescription"] . "</p>";
             }
+            
             ?>
 
             </div>

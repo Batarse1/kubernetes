@@ -20,7 +20,7 @@
             <div class="overflow-auto" style="max-height: 400px;">
             <?php 
 
-            $mysqli = new mysqli('10.244.0.6', "root", "moviePassword", "moviedb");
+            $mysqli = new mysqli('mysql-service', "root", "moviePassword", "moviedb");
 
             if (mysqli_connect_errno()) {
                 printf("Connection failed: %s\n", $mysqli->connect_error);

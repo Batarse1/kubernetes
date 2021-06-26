@@ -3,7 +3,7 @@ $termTitle = $_DELETE['termTitle'];
 $Definition = $_DELETE['Definition'];
 
 //database connection
-$mysqli = new mysqli('10.244.0.5', "root", "dictionaryPassword", "dictionarydb");
+$mysqli = new mysqli('mysql-service', "root", "dictionaryPassword", "dictionarydb");
 
 if (mysqli_connect_errno()) {
     printf("Connection failed: %s\n", $mysqli->connect_error);

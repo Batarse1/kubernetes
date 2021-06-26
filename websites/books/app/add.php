@@ -1,21 +1,22 @@
 <?php
-$bookTitle = $_POST['bookTitle'];
-$bookDescription = $_POST['bookDescription'];
+if(isset($_POST['submitButton'])){
+    $bookTitle = $_POST['bookTitle'];
+    $bookDescription = $_POST['bookDescription'];
 
-//database connection
-$mysqli = new mysqli('10.244.0.3', "root", "bookPassword", "bookdb");
+    //database connection
+    $mysqli = new mysqli('10.244.0.3', "root", "book", "bookdb");
 
-if (mysqli_connect_errno()) {
-    printf("Connection failed: %s\n", $mysqli->connect_error);
-    exit();
+    if (mysqli_connect_errno()) {
+        printf("Connection failed: %s\n", $mysqli->connect_error);
+        exit();
+    }
+
+    $stmt = $mysqli->prepare("INSERT INTO book(bookTitle, bookDescription) values(?, ?)");
+    $stmt->bind_param("ss", $bookTitle, $bookDescription);
+    $stmt->execute();
+    $stmt->close();
+    $mysqli->close();
 }
-
-$stmt = $mysql->prepare("INSERT INTO book(bookTitle, bookDescription) values(?, ?)");
-$stmt->bind_param("ss", $bookTitle, $bookDescription);
-$stmt->execute();
-printf("Book added succesfully\n");
-$stmt->close();
-$mysql->close();
 ?>
 <!DOCTYPE html>
 <html lang="en" class="h-100">
@@ -47,7 +48,7 @@ $mysql->close();
 
         <div class="d-flex justify-content-between">
             <a href="index.php"><button class="btn btn-primary pe-5 ps-5" type="button">Previous</button></a>
-            <button type="submit" class="btn btn-primary pe-5 ps-5" type="submit">Add</button>
+            <button type="submit" class="btn btn-primary pe-5 ps-5" type="submit" name="submitButton">Add</button>
             <a href="delete.php"><button class="btn btn-primary pe-5 ps-5" type="button">Next</button></a>
         </div>
 
