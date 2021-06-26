@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql-deployment
+  labels:
+    app: mysql
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mysql
+  template:
+    metadata:
+      labels:
+        app: mysql
+    spec:
+      nodeName: minikube # schedule pod to specific node
+      containers:
+        - name: pod-confessions
+          image: riadaple/confessions:latest 
+          resources:
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
+          imagePullPolicy: Always
+          ports:
+          - containerPort: 80
+
+        - name: mysql
+          image: mysql:5.7
+          resources:
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
+          ports:
+            - containerPort: 3306
+          volumeMounts:
+            - mountPath: "/var/lib/mysql"
+              subPath: "mysql"
+              name: confessionsdb-data
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: confessionsdb-secret
+                  key: ROOT_PASSWORD
+      volumes:
+        - name: confessionsdb-data
+          persistentVolumeClaim:
+            claimName: confessionsdb-data-disk

@@ -1,0 +1,16 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: booksapp-service
+  labels:
+    app: mysql
+spec:
+  type: NodePort
+  ports:
+  - port: 8000
+    targetPort: 80
+    nodePort: 30003
+    protocol: TCP
+  selector:
+    app: mysql

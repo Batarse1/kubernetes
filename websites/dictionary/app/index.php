@@ -20,7 +20,7 @@
             <div class="overflow-auto" style="max-height: 400px;">
             <?php 
 
-            $mysqli = new mysqli('mysql-service', "root", "dictionaryPassword", "dictionarydb");
+            $mysqli = new mysqli('mysql-service', "root", "term", "dictionarydb");
 
             if (mysqli_connect_errno()) {
                 printf("Connection failed: %s\n", $mysqli->connect_error);
@@ -31,8 +31,8 @@
             $result = mysqli_query($conn, $query);
 
             while($row = $result->fetch_array(MYSQLI_ASSOC)){
-                echo "<h6 class='display-6'>" . $row["term"] . "</h6>";	
-                echo "<p class='lead'>" . $row["definition"] . "</p>";
+                echo "<h6 class='display-6'>" . $row["termTitle"] . "</h6>";	
+                echo "<p class='lead'>" . $row["Definitions"] . "</p>";
             }
             ?>
 

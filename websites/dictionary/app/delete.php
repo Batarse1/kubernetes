@@ -1,21 +1,22 @@
 <?php
-$termTitle = $_DELETE['termTitle'];
-$Definition = $_DELETE['Definition'];
+if(isset($_POST['submitButton'])){
+    $termTitle = $_POST['termTitle'];
+    $Definitions = $_POST['Definitions'];
 
-//database connection
-$mysqli = new mysqli('mysql-service', "root", "dictionaryPassword", "dictionarydb");
+    //database connection
+    $mysqli = new mysqli('mysql-service', "root", "term", "dictionarydb");
 
-if (mysqli_connect_errno()) {
-    printf("Connection failed: %s\n", $mysqli->connect_error);
-    exit();
+    if (mysqli_connect_errno()) {
+        printf("Connection failed: %s\n", $mysqli->connect_error);
+        exit();
+    }
+
+    $stmt = $mysqli->prepare("DELETE FROM dictionary WHERE title='termTitle' values(?)");
+    $stmt->bind_param("s", $termTitle);
+    $stmt->execute();
+    $stmt->close();
+    $mysqli->close();
 }
-
-$stmt = $mysqli->prepare("DELETE FROM dictionary WHERE title='termTitle' values(?)");
-$stmt->bind_param("s", $termTitle);
-$stmt->execute();
-printf("Term deleted succesfully\n");
-$stmt->close();
-$mysqli->close();
 ?>
 <!DOCTYPE html>
 <html lang="en" class="h-100">
@@ -31,7 +32,7 @@ $mysqli->close();
 
 <body class="h-100 d-flex justify-content-center align-items-center">
 
-    <form action="" method="DELETE" class="container">
+    <form action="" method="POST" class="container">
 
         <h4 class="display-4">Delete a term</h4>
 
@@ -42,7 +43,7 @@ $mysqli->close();
 
         <div class="d-flex justify-content-between">
             <a href="add.php"><button class="btn btn-primary pe-5 ps-5" type="button">Previous</button></a>
-            <button class="btn btn-primary pe-5 ps-5" type="submit">Delete</button>
+            <button class="btn btn-primary pe-5 ps-5" type="submit" name="submitButton">Delete</button>
         </div>
 
     </form>

@@ -20,7 +20,7 @@
             <div class="overflow-auto" style="max-height: 400px;">
             <?php 
 
-            $mysqli = new mysqli('mysql-service', "root", "confessionPassword", "confessiondb");
+            $mysqli = new mysqli('mysql-service', "root", "confe", "confessiondb");
 
             if (mysqli_connect_errno()) {
                 printf("Connection failed: %s\n", $mysqli->connect_error);
@@ -28,11 +28,11 @@
             }
 
             $query = 'SELECT * FROM confessions';
-            $result = mysqli_query($conn, $query);
+            $result = mysqli_query($mysqli, $query);
 
             while($row = $result->fetch_array(MYSQLI_ASSOC)){
-                echo "<h6 class='display-6'>" . $row["title"] . "</h6>";	
-                echo "<p class='lead'>" . $row["confession"] . "</p>";
+                echo "<h6 class='display-6'>" . $row["confessionTitle"] . "</h6>";	
+                echo "<p class='lead'>" . $row["Confession"] . "</p>";
             }
             ?>
 
