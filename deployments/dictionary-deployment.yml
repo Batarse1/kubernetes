@@ -46,8 +46,8 @@ spec:
           ports:
             - containerPort: 3306
           volumeMounts:
-            - mountPath: "/var/lib/mysql2"
-              subPath: "mysql2"
+            - mountPath: "/var/lib/mysql"
+              subPath: "mysql"
               name: dictionarydb-data
           env:
             - name: MYSQL_ROOT_PASSWORD
