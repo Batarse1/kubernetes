@@ -4,7 +4,7 @@ if(isset($_POST['submitButton'])){
     $Definitions = $_POST['Definitions'];
 
     //database connection
-    $mysqli = new mysqli('mysql-service', "root", "term", "dictionarydb");
+    $mysqli = new mysqli('dictionarydb-service', "root", "term", "dictionarydb");
 
     if (mysqli_connect_errno()) {
         printf("Connection failed: %s\n", $mysqli->connect_error);

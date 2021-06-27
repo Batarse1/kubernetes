@@ -1,23 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: mysql2-deployment
+  name: mysql4-deployment
   labels:
-    app: mysql2
+    app: mysql4
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: mysql2
+      app: mysql4
   template:
     metadata:
       labels:
-        app: mysql2
+        app: mysql4
     spec:
       nodeName: minikube # schedule pod to specific node
       containers:
-        - name: pod-dictionary
-          image: riadaple/dictionary:latest 
+        - name: pod-movie
+          image: riadaple/movie:latest 
           resources:
             limits:
               memory: "512Mi"
@@ -26,7 +26,7 @@ spec:
           ports:
           - containerPort: 80
 
-        - name: mysql2
+        - name: mysql
           image: mysql:5.7
           resources:
             limits:
@@ -35,16 +35,16 @@ spec:
           ports:
             - containerPort: 3306
           volumeMounts:
-            - mountPath: "/var/lib/mysql2"
-              subPath: "mysql2"
-              name: dictionarydb-data
+            - mountPath: "/var/lib/mysql"
+              subPath: "mysql"
+              name: moviedb-data
           env:
             - name: MYSQL_ROOT_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: dictionarydb-secret
+                  name: moviedb-secret
                   key: ROOT_PASSWORD
       volumes:
-        - name: dictionarydb-data
+        - name: moviedb-data
           persistentVolumeClaim:
-            claimName: dictionarydb-data-disk
+            claimName: moviedb-data-disk

@@ -1,21 +1,22 @@
 <?php
-$movieTitle = $_POST['movieTitle'];
-$Summary = $_POST['Summary'];
+if(isset($_POST['submitButton'])){
+    $movieTitle = $_POST['movieTitle'];
+    $Summary = $_POST['Summary'];
 
-//database connection
-$mysqli = new mysqli('mysql-service', "root", "moviePassword", "moviedb");
+    //database connection
+    $mysqli = new mysqli('moviedb-service', "root", "movie", "moviedb");
 
-if (mysqli_connect_errno()) {
-    printf("Connection failed: %s\n", $mysqli->connect_error);
-    exit();
+    if (mysqli_connect_errno()) {
+        printf("Connection failed: %s\n", $mysqli->connect_error);
+        exit();
+    }
+
+    $stmt = $mysqli->prepare("INSERT INTO movie(movieTitle, Summary) values(?, ?)");
+    $stmt->bind_param("ss", $movieTitle, $Summary);
+    $stmt->execute();    
+    $stmt->close();
+    $mysqli->close();
 }
-
-$stmt = $mysql->prepare("INSERT INTO movie(movieTitle, Summary) values(?, ?)");
-$stmt->bind_param("ss", $movieTitle, $Summary);
-$stmt->execute();
-printf("Movie added succesfully\n");
-$stmt->close();
-$mysql->close();
 ?>
 <!DOCTYPE html>
 <html lang="en" class="h-100">
@@ -47,7 +48,7 @@ $mysql->close();
 
         <div class="d-flex justify-content-between">
             <a href="index.php"><button class="btn btn-primary pe-5 ps-5" type="button">Previous</button></a>
-            <button type="submit" class="btn btn-primary pe-5 ps-5" type="submit">Add</button>
+            <button type="submit" class="btn btn-primary pe-5 ps-5" type="submit" name="submitButton">Add</button>
             <a href="delete.php"><button class="btn btn-primary pe-5 ps-5" type="button">Next</button></a>
         </div>
 
