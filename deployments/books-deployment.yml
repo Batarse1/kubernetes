@@ -24,7 +24,7 @@ spec:
               cpu: "500m"
           imagePullPolicy: Always
           ports:
-          - containerPort: 80
+          - containerPort: 81
 
         - name: mysql
           image: mysql:5.7

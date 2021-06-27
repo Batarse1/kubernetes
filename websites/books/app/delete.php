@@ -4,7 +4,7 @@ if(isset($_POST['submitButton'])){
     $bookDescription = $_POST['bookDescription'];
 
     //database connection
-    $mysqli = new mysqli('10.244.0.3', "root", "book", "bookdb");
+    $mysqli = new mysqli('booksdb-service', "root", "book", "bookdb");
 
     if (mysqli_connect_errno()) {
         printf("Connection failed: %s\n", $mysqli->connect_error);

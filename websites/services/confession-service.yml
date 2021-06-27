@@ -2,15 +2,15 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: booksapp-service
+  name: confessionsapp-service
   labels:
-    app: mysql
+    app: mysql3
 spec:
   type: NodePort
   ports:
-  - port: 8000
+  - port: 8008
     targetPort: 80
     nodePort: 30003
     protocol: TCP
   selector:
-    app: mysql
+    app: mysql3

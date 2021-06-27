@@ -5,7 +5,7 @@ metadata:
   name: confessionsdb-service
 spec:
   selector:
-    app: mysql
+    app: mysql3
   ports:
   - port: 3306
     targetPort: 3306

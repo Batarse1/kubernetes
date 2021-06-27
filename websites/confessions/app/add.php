@@ -4,7 +4,7 @@ if(isset($_POST['submitButton'])){
     $Confession = $_POST['Confession'];
 
     //database connection
-    $mysqli = new mysqli('mysql-service', "root", "confe", "confessiondb");
+    $mysqli = new mysqli('confessionsdb-service', "root", "confe", "confessiondb");
 
     if (mysqli_connect_errno()) {
         printf("Connection failed: %s\n", $mysqli->connect_error);

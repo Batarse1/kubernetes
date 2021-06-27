@@ -4,14 +4,14 @@ if(isset($_POST['submitButton'])){
     $Confession = $_POST['Confession'];
 
     //database connection
-    $mysqli = new mysqli('mysql-service', "root", "confe", "confessiondb");
+    $mysqli = new mysqli('confessionsdb-service', "root", "confe", "confessiondb");
 
     if (mysqli_connect_errno()) {
         printf("Connection failed: %s\n", $mysqli->connect_error);
         exit();
     }
 
-    $stmt = $mysqli->prepare("DELETE FROM confessions WHERE title='confessionTitle' values(?)");
+    $stmt = $mysqli->prepare("DELETE FROM confessions WHERE confessionTitle=?");
     $stmt->bind_param("s", $confessionTitle);
     $stmt->execute();    
     $stmt->close();
@@ -38,7 +38,7 @@ if(isset($_POST['submitButton'])){
 
         <div class="mb-3">
             <label for="confessionTitle" class="form-label">Confession title</label>
-            <input type="text" class="form-control" id="confessionTitle" placeholder="Ex: Harry potter and the philosopher's stone" name="confessionTitle" value="">
+            <input type="text" class="form-control" id="confessionTitle" placeholder="Ex: Amy" name="confessionTitle" value="">
         </div>
 
         <div class="d-flex justify-content-between">
