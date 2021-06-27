@@ -28,16 +28,16 @@ spec:
       nodeName: minikube # schedule pod to specific node
       containers:
         - name: pod-movie
-          image: riadaple/movie:latest 
+          image: riadaple/movies:latest 
           resources:
             limits:
               memory: "512Mi"
               cpu: "500m"
           imagePullPolicy: Always
           ports:
-          - containerPort: 80
+          - containerPort: 82
 
-        - name: mysql
+        - name: mysql4
           image: mysql:5.7
           resources:
             limits:

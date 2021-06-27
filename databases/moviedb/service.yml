@@ -8,4 +8,4 @@ spec:
     app: mysql4
   ports:
   - port: 3306
-    targetPort: 3306
+    targetPort: 3306  

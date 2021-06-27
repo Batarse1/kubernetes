@@ -4,11 +4,11 @@ kind: Service
 metadata:
   name: dictionaryapp-service
   labels:
-    app: mysql
+    app: mysql2
 spec:
   type: NodePort
   ports:
-  - port: 8000
+  - port: 8002
     targetPort: 80
     nodePort: 30002
     protocol: TCP

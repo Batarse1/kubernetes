@@ -28,7 +28,7 @@
             }
 
             $query = 'SELECT * FROM dictionary';
-            $result = mysqli_query($conn, $query);
+            $result = mysqli_query($mysqli, $query);
 
             while($row = $result->fetch_array(MYSQLI_ASSOC)){
                 echo "<h6 class='display-6'>" . $row["termTitle"] . "</h6>";	

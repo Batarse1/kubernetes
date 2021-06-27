@@ -29,20 +29,12 @@ spec:
       containers:
         - name: pod-dictionary
           image: riadaple/dictionary:latest 
-          resources:
-            limits:
-              memory: "512Mi"
-              cpu: "500m"
           imagePullPolicy: Always
           ports:
-          - containerPort: 80
+          - containerPort: 83
 
         - name: mysql2
           image: mysql:5.7
-          resources:
-            limits:
-              memory: "512Mi"
-              cpu: "500m"
           ports:
             - containerPort: 3306
           volumeMounts:

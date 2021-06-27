@@ -2,13 +2,13 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: dictionaryapp-service
+  name: movieapp-service
   labels:
-    app: mysql
+    app: mysql4
 spec:
   type: NodePort
   ports:
-  - port: 8000
+  - port: 8004
     targetPort: 80
     nodePort: 30004
     protocol: TCP
