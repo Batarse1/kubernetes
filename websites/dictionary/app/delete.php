@@ -11,7 +11,7 @@ if(isset($_POST['submitButton'])){
         exit();
     }
 
-    $stmt = $mysqli->prepare("DELETE FROM dictionary WHERE title='termTitle' values(?)");
+    $stmt = $mysqli->prepare("DELETE FROM dictionary WHERE termTitle=?");
     $stmt->bind_param("s", $termTitle);
     $stmt->execute();
     $stmt->close();

@@ -11,7 +11,7 @@ if(isset($_POST['submitButton'])){
         exit();
     }
 
-    $stmt = $mysqli->prepare("DELETE FROM movie WHERE title='movieTitle' values(?)");
+    $stmt = $mysqli->prepare("DELETE FROM movie WHERE movieTitle=?");
     $stmt->bind_param("s", $movieTitle);
     $stmt->execute();
     $stmt->close();
