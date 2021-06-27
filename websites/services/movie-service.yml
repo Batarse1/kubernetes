@@ -10,7 +10,7 @@ spec:
   ports:
   - port: 8000
     targetPort: 80
-    nodePort: 30002
+    nodePort: 30004
     protocol: TCP
   selector:
-    app: mysql2
+    app: mysql4

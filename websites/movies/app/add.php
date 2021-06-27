@@ -1,18 +1,18 @@
 <?php
 if(isset($_POST['submitButton'])){
-    $termTitle = $_POST['termTitle'];
-    $Definitions = $_POST['Definitions'];
+    $movieTitle = $_POST['movieTitle'];
+    $Summary = $_POST['Summary'];
 
     //database connection
-    $mysqli = new mysqli('dictionarydb-service', "root", "term", "dictionarydb");
+    $mysqli = new mysqli('moviedb-service', "root", "movie", "moviedb");
 
     if (mysqli_connect_errno()) {
         printf("Connection failed: %s\n", $mysqli->connect_error);
         exit();
     }
 
-    $stmt = $mysqli->prepare("INSERT INTO dictionary(termTitle, Definitions) values(?, ?)");
-    $stmt->bind_param("ss", $termTitle, $Definitions);
+    $stmt = $mysqli->prepare("INSERT INTO movie(movieTitle, Summary) values(?, ?)");
+    $stmt->bind_param("ss", $movieTitle, $Summary);
     $stmt->execute();    
     $stmt->close();
     $mysqli->close();
@@ -27,23 +27,23 @@ if(isset($_POST['submitButton'])){
     <link rel="stylesheet" href="style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
 
-    <title>Dictionary</title>
+    <title>Movies</title>
 </head>
 
 <body class="h-100 d-flex justify-content-center align-items-center">
 
     <form action="" method="POST" class="container">
 
-        <h4 class="display-4">Add a term</h4>
+        <h4 class="display-4">Add a movie</h4>
 
         <div class="mb-3">
-            <label for="termTitle" class="form-label">Term</label>
-            <input type="text" class="form-control" id="termTitle" placeholder="Ex: Term" name="termTitle" value="">
+            <label for="movieTitle" class="form-label">Movie title</label>
+            <input type="text" class="form-control" id="movieTitle" placeholder="Ex: Harry potter and the philosopher's stone" name="movieTitle" value="">
         </div>
 
         <div class="mb-3">
-            <label for="Definitions" class="form-label">Definition</label>
-            <textarea class="form-control" id="Definitions" rows="5" placeholder="Ex: A word or a phrase that is used to mean a particular thing" name="Definitions" value=""></textarea>
+            <label for="Summary" class="form-label">Summary</label>
+            <textarea class="form-control" id="Summary" rows="5" placeholder="Ex: Harry Potter and the Philosopher's Stone (released in the United States and India as Harry Potter and the Sorcerer's Stone) is a 2001 fantasy film directed by Chris Columbus and distributed by Warner Bros. Pictures, based on J. K. Rowling's 1997 novel of the same name." name="Summary" value=""></textarea>
         </div>
 
         <div class="d-flex justify-content-between">

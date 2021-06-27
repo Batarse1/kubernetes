@@ -1,18 +1,18 @@
 <?php
 if(isset($_POST['submitButton'])){
-    $termTitle = $_POST['termTitle'];
-    $Definitions = $_POST['Definitions'];
+    $movieTitle = $_POST['movieTitle'];
+    $Summary = $_POST['Summary'];
 
     //database connection
-    $mysqli = new mysqli('dictionarydb-service', "root", "term", "dictionarydb");
+    $mysqli = new mysqli('moviedb-service', "root", "movie", "moviedb");
 
     if (mysqli_connect_errno()) {
         printf("Connection failed: %s\n", $mysqli->connect_error);
         exit();
     }
 
-    $stmt = $mysqli->prepare("DELETE FROM dictionary WHERE termTitle=?");
-    $stmt->bind_param("s", $termTitle);
+    $stmt = $mysqli->prepare("DELETE FROM movie WHERE movieTitle=?");
+    $stmt->bind_param("s", $movieTitle);
     $stmt->execute();
     $stmt->close();
     $mysqli->close();
@@ -27,18 +27,18 @@ if(isset($_POST['submitButton'])){
     <link rel="stylesheet" href="style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
 
-    <title>Definitions</title>
+    <title>Movies</title>
 </head>
 
 <body class="h-100 d-flex justify-content-center align-items-center">
 
     <form action="" method="POST" class="container">
 
-        <h4 class="display-4">Delete a term</h4>
+        <h4 class="display-4">Delete a movie</h4>
 
         <div class="mb-3">
-            <label for="termTitle" class="form-label">term</label>
-            <input type="text" class="form-control" id="termTitle" placeholder="Ex: Term" name="termTitle" value="">
+            <label for="movieTitle" class="form-label">Movie title</label>
+            <input type="text" class="form-control" id="movieTitle" placeholder="Ex: Harry potter and the philosopher's stone" name="movieTitle" value="">
         </div>
 
         <div class="d-flex justify-content-between">

@@ -2,10 +2,10 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: dictionarydb-service
+  name: moviedb-service
 spec:
   selector:
-    app: mysql2
+    app: mysql4
   ports:
   - port: 3306
     targetPort: 3306
