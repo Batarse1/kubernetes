@@ -31,8 +31,8 @@
             $result = mysqli_query($conn, $query);
 
             while($row = $result->fetch_array(MYSQLI_ASSOC)){
-                echo "<h6 class='display-6'>" . $row["title"] . "</h6>";	
-                echo "<p class='lead'>" . $row["summary"] . "</p>";
+                echo "<h6 class='display-6'>" . $row["movieTitle"] . "</h6>";	
+                echo "<p class='lead'>" . $row["Summary"] . "</p>";
             }
             ?>
 
